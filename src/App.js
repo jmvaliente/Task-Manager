@@ -6,13 +6,11 @@ import {Route , Switch} from 'react-router-dom'
 
 function App() {
   return (
-    <div>
       <Switch>
         <Route exact path = '/' component={Login}/>
         <Route exact path = '/create-user' component={AddUser}/>
         <Route exact path = '/proyects' component={Proyects}/>
       </Switch>
-    </div>
   );
 }
 
