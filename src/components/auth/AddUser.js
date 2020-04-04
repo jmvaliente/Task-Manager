@@ -6,11 +6,12 @@ const AddUser = () =>{
     const [state,setState] = useState({
         email: '',
         password: '',
+        checkPassword: '',
         name: '',
         surname: ''
     })
 
-    const { email, password, name, surname } = state
+    const { email, password, checkPassword ,name, surname } = state
 
     const createChange = (e) =>{
         setState({
@@ -39,7 +40,7 @@ const AddUser = () =>{
                 >
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
-                        <input  type="name" 
+                        <input  type="text" 
                                 className="form-control"
                                 id="name" 
                                 name="name"
@@ -49,7 +50,7 @@ const AddUser = () =>{
                     </div>
                     <div className="form-group">
                         <label htmlFor="surname">Surname</label>
-                        <input  type="surname" 
+                        <input  type="text" 
                                 className="form-control"
                                 id="surname" 
                                 name="surname"
@@ -77,9 +78,19 @@ const AddUser = () =>{
                                 onChange={createChange}
                         />
                     </div>
+                    <div className="form-group">
+                        <label htmlFor="checkPasword">Check Password</label>
+                        <input  type="password" 
+                                className="form-control" 
+                                id="checkPasword"
+                                name="checkPassword"
+                                value={checkPassword}
+                                onChange={createChange}
+                        />
+                    </div>
                     <button type="submit" 
                             className="btn btn-outline-primary"
-                    >Submit</button>
+                    >Register</button>
                 </form>
                 <Link to = {'/'}>
                     <button className="btn btn-outline-warning mt-3"
