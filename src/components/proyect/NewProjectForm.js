@@ -3,12 +3,12 @@ import React, { Fragment, useState } from 'react'
 const NewProyectForm = () =>{
 
     const [state, setState] = useState ({
-        proyect: null,
+        proyect: false,
         name: ''
 
     })
 
-    const {name} = state
+    const {name, proyect} = state
 
     const changeProyect = (e) =>{
         setState({
@@ -17,42 +17,60 @@ const NewProyectForm = () =>{
         })
     }
 
+    const clickEvent = () =>{
+        setState({
+            ...state,
+            proyect: true
+        })
+    }
+
     const submitProyect = (e) =>{
         e.preventDefault()
+
+        //verificar campos
+
+        //action
+
     }
 
 
 
     return(
         <Fragment>
-            <button
-                type="button"
-                className="btn btn-primary"
-            >Add Proyect</button>
 
-            <form
-                className="row justify-content-center"
-                onSubmit={submitProyect}
-            >
-                <div className="col">
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Name Proyect"
-                            value={name}
-                            onChange={changeProyect}
-                        />
+            {proyect===false ? 
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={clickEvent}
+                >Add Proyect</button>
+            :null}
+            {proyect===true ? 
+                <form
+                    className="row justify-content-center"
+                    onSubmit={submitProyect}
+                >
+                    <div className="col">
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Name Proyect"
+                                value={name}
+                                onChange={changeProyect}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="submit"
+                                className="btn btn-primary mt-2"
+                                value="Submit"
+                            />
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <input
-                            type="submit"
-                            className="btn btn-primary mt-2"
-                        />
-                    </div>
-                </div>
-            </form>
+                </form>
+            :null}
 
         </Fragment>
     )
