@@ -34,6 +34,7 @@ const FormTask = () =>{
                     <input
                         type = "submit"
                         className = "btn btn-primary"
+                        value = "Add Task"
 
                     />
                 </div>
