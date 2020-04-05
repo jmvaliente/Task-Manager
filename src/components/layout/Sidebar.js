@@ -4,7 +4,7 @@ import NewProyectForm from '../proyect/NewProjectForm'
 const Sidebar = () => {
     return(
         <aside>
-            <h1>TASK <span>Manager</span></h1>
+            <h1 className="font-weight-bold">TASK<span className="font-weight-light">Manager</span></h1>
             <div className="mt-5">
                 <NewProyectForm/>
             </div>

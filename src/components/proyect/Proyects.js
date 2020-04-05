@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../layout/Sidebar'
 import ListProyects from './ListProyects'
 import Navbar from '../layout/Navbar'
+import FormTask from '../tasks/FormTask'
 
 const Proyects = () =>{
     return(
@@ -14,6 +15,9 @@ const Proyects = () =>{
                 </div>
                 <div className="col-8 mt-4">
                     <Navbar/>
+                    <main>
+                        <FormTask/>
+                    </main>
                 </div>
             </div>
         </div>
