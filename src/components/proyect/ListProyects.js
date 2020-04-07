@@ -8,11 +8,11 @@ const ListProyects = () =>{
     const context = useContext(proyectContext)
 
     const {listProyect, listProyectFn} = context
-
+    
     useEffect(() =>{
         listProyectFn()
     },[])
-
+    
     if(listProyect===0) return null
 
     return(

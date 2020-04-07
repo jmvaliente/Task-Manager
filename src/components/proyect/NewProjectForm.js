@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useState, useContext} from 'react'
 
 import proyectContext from '../../context/proyects/proyectContext'
 
@@ -10,7 +10,7 @@ const NewProyectForm = () =>{
         name: ''
     })
 
-    const {newProyect, newProyectFn} = context
+    const {newProyect, newProyectFn, addProyectFn, validateNewProyectFn} = context
     const {name} = state
 
     const changeProyect = (e) =>{
@@ -20,6 +20,7 @@ const NewProyectForm = () =>{
         })
     }
 
+    
     const clickEvent = () =>{
         setState({
             ...state,
@@ -30,13 +31,22 @@ const NewProyectForm = () =>{
     const submitProyect = (e) =>{
         e.preventDefault()
 
-        //verificar campos
+        //validate form
+        if(name.trim()===''){
+            validateNewProyectFn()
+            return
+        }
 
         //action
+        addProyectFn(state)
 
+        //reset value
+        setState({
+            name: ''
+        })
+
+        
     }
-
-
 
     return(
         <Fragment>
