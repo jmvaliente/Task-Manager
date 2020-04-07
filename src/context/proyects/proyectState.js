@@ -6,7 +6,12 @@ import {NEW_PROYECT} from '../../types'
 
 const ProyectState = props => {
     const initialState = {
-        newProyect: false
+        newProyect: false,
+        listProyect: [
+            {id:1, name: 'Web Developer'},
+            {id:2, name: 'UI developer'},
+            {id:3, name: 'SEO/SEM strategy'}
+        ]
     }
 
     //dispatch
@@ -25,6 +30,7 @@ const ProyectState = props => {
         <proyectContext.Provider
             value={{
                 newProyect: state.newProyect,
+                listProyect: state.listProyect,
 
                 newProyectFn
             }}

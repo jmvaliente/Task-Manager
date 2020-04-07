@@ -1,18 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ProyectList from './ProyectList'
+
+import proyectContext from '../../context/proyects/proyectContext'
 
 const ListProyects = () =>{
 
-    const [state, setState] = useState([
-        {name: 'Web Developer'},
-        {name: 'UI developer'},
-        {name: 'SEO/SEM strategy'}
-    ])
+    const context = useContext(proyectContext)
 
+    const {listProyect} = context
+
+    const [state, setState] = useState([
+        {id:1, name: 'Web Developer'},
+        {id:2, name: 'UI developer'},
+        {id:3, name: 'SEO/SEM strategy'}
+    ])
+    console.log(listProyect)
     return(
         <ul>
-            {state.map(el => (
-                <ProyectList proyect = {el}/>
+            {listProyect.map(el => (
+                <ProyectList 
+                    key ={el.id}
+                    proyect = {el}/>
             ))}
         </ul>
     )
