@@ -5,7 +5,7 @@ const Task = ({task}) => {
     const {name,complete} = task
 
     return(
-     <li class="list-group-item d-flex justify-content-between align-items-center">
+     <li className="list-group-item d-flex justify-content-between align-items-center">
             <p>{name}</p> 
             <div className="align-items-end">
                 {complete 

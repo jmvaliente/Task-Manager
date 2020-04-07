@@ -14,7 +14,7 @@ const ListProyects = () =>{
         {id:2, name: 'UI developer'},
         {id:3, name: 'SEO/SEM strategy'}
     ])
-    console.log(listProyect)
+    
     return(
         <ul>
             {listProyect.map(el => (
