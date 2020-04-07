@@ -1,7 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import Task from './Task'
 
+import proyectContext from '../../context/proyects/proyectContext'
+
 const ListTasks = () => {
+
+    const context = useContext(proyectContext)
+
+    const {activeProyect} = context
 
     const state = [
         {name: "Update System", complete: false},
@@ -9,9 +15,10 @@ const ListTasks = () => {
         {name: "Change UI", complete: true},
         {name: "Update Images", complete: true}
     ]
-
+    
     return(
         <Fragment>
+            {activeProyect ? <h4>Proyect : {activeProyect[0].name}</h4> : null}
             <div className = "container">
                 <ul className = "list-group">
                     {state.length === 0

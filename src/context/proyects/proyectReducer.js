@@ -1,4 +1,4 @@
-import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT} from '../../types'
+import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT, ACTIVE_PROYECT} from '../../types'
 
 export default (state,action) => {
     switch (action.type) {
@@ -23,6 +23,11 @@ export default (state,action) => {
             return{
                 ...state,
                 validateNewProyect: action.payload
+            }
+        case ACTIVE_PROYECT:
+            return{
+                ...state,
+                activeProyect: state.stateListProyect.filter(el => el === action.payload)
             }
     
         default:

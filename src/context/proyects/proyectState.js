@@ -5,7 +5,7 @@ import proyectReducer from './proyectReducer'
 import {v4 as uuid} from 'uuid'
 import Swal from 'sweetalert2'
 
-import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT} from '../../types'
+import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT, ACTIVE_PROYECT} from '../../types'
 
 
 
@@ -19,7 +19,8 @@ const ProyectState = props => {
     const initialState = {
         stateListProyect: [],
         newProyect: false,
-        validateNewProyect: true
+        validateNewProyect: true,
+        activeProyect: null
     }
 
     //dispatch
@@ -61,17 +62,26 @@ const ProyectState = props => {
           })
     }
 
+    const activeProyectFn = (proyect) => {
+        dispatch({
+            type: ACTIVE_PROYECT,
+            payload: proyect
+        })
+    }
+
 
     return (
         <proyectContext.Provider
             value={{
                 newProyect: state.newProyect,
                 listProyect: state.stateListProyect,
+                activeProyect: state.activeProyect,
 
                 newProyectFn,
                 listProyectFn,
                 addProyectFn,
-                validateNewProyectFn
+                validateNewProyectFn,
+                activeProyectFn
             }}
         >
             {props.children}
