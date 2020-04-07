@@ -15,21 +15,27 @@ const ListTasks = () => {
         {name: "Change UI", complete: true},
         {name: "Update Images", complete: true}
     ]
+
+    if (!activeProyect){
+        return(
+            <h4>Select proyect</h4>
+        )
+    }
     
     return(
         <Fragment>
-            {activeProyect ? <h4>Proyect : {activeProyect[0].name}</h4> : null}
-            <div className = "container">
-                <ul className = "list-group">
-                    {state.length === 0
-                        ? (<li><p>Tasks no added</p></li>)
-                        : state.map(el => (
-                            <Task task = {el}
-                            />
-                            ))
-                    }
-                </ul>
-            </div>
+            <h4>Proyect : {activeProyect[0].name}</h4>
+                <div className = "container">
+                    <ul className = "list-group">
+                        {state.length === 0
+                            ? (<li><p>Tasks no added</p></li>)
+                            : state.map(el => (
+                                <Task task = {el}
+                                />
+                                ))
+                        }
+                    </ul>
+                </div>
             <button
                 className = "mt-2 btn btn-danger"
             >
