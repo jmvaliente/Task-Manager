@@ -1,1 +1,2 @@
 export const NEW_PROYECT = 'NEW_PROYECT'
+export const LIST_PROYECT = 'LIST_PROYECT'

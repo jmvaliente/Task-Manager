@@ -1,4 +1,4 @@
-import {NEW_PROYECT} from '../../types'
+import {NEW_PROYECT, LIST_PROYECT} from '../../types'
 
 export default (state,action) => {
     switch (action.type) {
@@ -6,6 +6,11 @@ export default (state,action) => {
             return{
                 ...state,
                 newProyect: action.payload
+            }
+        case LIST_PROYECT:
+            return{
+                ...state,
+                listProyect: action.payload
             }
     
         default:

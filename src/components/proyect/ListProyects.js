@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ProyectList from './ProyectList'
 
 import proyectContext from '../../context/proyects/proyectContext'
@@ -7,14 +7,14 @@ const ListProyects = () =>{
 
     const context = useContext(proyectContext)
 
-    const {listProyect} = context
+    const {listProyect, listProyectFn} = context
 
-    const [state, setState] = useState([
-        {id:1, name: 'Web Developer'},
-        {id:2, name: 'UI developer'},
-        {id:3, name: 'SEO/SEM strategy'}
-    ])
-    
+    useEffect(() =>{
+        listProyectFn()
+    },[])
+
+    if(listProyect===0) return null
+
     return(
         <ul>
             {listProyect.map(el => (

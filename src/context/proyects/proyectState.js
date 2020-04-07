@@ -2,16 +2,19 @@ import React, { useReducer } from 'react'
 import proyectContext from './proyectContext'
 import proyectReducer from './proyectReducer'
 
-import {NEW_PROYECT} from '../../types'
+import {NEW_PROYECT, LIST_PROYECT} from '../../types'
+
+
 
 const ProyectState = props => {
+
+    const listProyect = [
+        {id:1, name: 'Web Developer'},
+        {id:2, name: 'UI developer'},
+        {id:3, name: 'SEO/SEM strategy'}
+    ]
     const initialState = {
         newProyect: false,
-        listProyect: [
-            {id:1, name: 'Web Developer'},
-            {id:2, name: 'UI developer'},
-            {id:3, name: 'SEO/SEM strategy'}
-        ]
     }
 
     //dispatch
@@ -26,13 +29,21 @@ const ProyectState = props => {
         })
     }
 
+    const listProyectFn = () =>{
+        dispatch({
+            type: LIST_PROYECT,
+            payload: listProyect
+        })
+    }
+
     return (
         <proyectContext.Provider
             value={{
                 newProyect: state.newProyect,
-                listProyect: state.listProyect,
+                listProyect: listProyect,
 
-                newProyectFn
+                newProyectFn,
+                listProyectFn
             }}
         >
             {props.children}
