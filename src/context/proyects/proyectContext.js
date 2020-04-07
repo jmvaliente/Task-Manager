@@ -1,5 +1,5 @@
 import {createContext} from 'react'
 
-const Context = createContext()
+const proyectContext = createContext()
 
-export default Context
+export default proyectContext

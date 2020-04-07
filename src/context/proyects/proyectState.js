@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react'
 import proyectContext from './proyectContext'
 import proyectReducer from './proyectReducer'
-import ProyectList from '../../components/proyect/ProyectList'
+
+import {NEW_PROYECT} from '../../types'
 
 const ProyectState = props => {
     const initialState = {
@@ -13,10 +14,19 @@ const ProyectState = props => {
 
     //Funtion CRUD
 
+    const newProyectFn = () =>{
+        dispatch({
+            type: NEW_PROYECT,
+            payload: true
+        })
+    }
+
     return (
         <proyectContext.Provider
             value={{
-                newProyect: state.newProyect
+                newProyect: state.newProyect,
+
+                newProyectFn
             }}
         >
             {props.children}

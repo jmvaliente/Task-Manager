@@ -1,14 +1,17 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
+
+import proyectContext from '../../context/proyects/proyectContext'
 
 const NewProyectForm = () =>{
 
-    const [state, setState] = useState ({
-        proyect: false,
-        name: ''
+    const context = useContext(proyectContext)
 
+    const [state, setState] = useState ({
+        name: ''
     })
 
-    const {name, proyect} = state
+    const {newProyect, newProyectFn} = context
+    const {name} = state
 
     const changeProyect = (e) =>{
         setState({
@@ -20,8 +23,8 @@ const NewProyectForm = () =>{
     const clickEvent = () =>{
         setState({
             ...state,
-            proyect: true
         })
+        newProyectFn()
     }
 
     const submitProyect = (e) =>{
@@ -38,14 +41,14 @@ const NewProyectForm = () =>{
     return(
         <Fragment>
 
-            {proyect===false ? 
+            {newProyect===false ? 
                 <button
                     type="button"
                     className="btn btn-primary"
                     onClick={clickEvent}
                 >Add Proyect</button>
             :null}
-            {proyect===true ? 
+            {newProyect===true ? 
                 <form
                     className="row justify-content-center"
                     onSubmit={submitProyect}
