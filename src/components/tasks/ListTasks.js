@@ -7,7 +7,7 @@ const ListTasks = () => {
 
     const context = useContext(proyectContext)
 
-    const {activeProyect} = context
+    const {activeProyect, deleteProyectFn} = context
 
     const state = [
         {name: "Update System", complete: false},
@@ -38,6 +38,7 @@ const ListTasks = () => {
                 </div>
             <button
                 className = "mt-2 btn btn-danger"
+                onClick = {() => deleteProyectFn(activeProyect[0])}
             >
                 Delete Proyect</button>
         </Fragment>

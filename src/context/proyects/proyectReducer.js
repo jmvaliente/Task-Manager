@@ -1,4 +1,5 @@
-import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT, ACTIVE_PROYECT} from '../../types'
+import {NEW_PROYECT, LIST_PROYECT, ADD_PROYECT, VALIDATE_NEW_PROYECT, 
+        ACTIVE_PROYECT, DELETE_PROYECT} from '../../types'
 
 export default (state,action) => {
     switch (action.type) {
@@ -28,6 +29,12 @@ export default (state,action) => {
             return{
                 ...state,
                 activeProyect: state.stateListProyect.filter(el => el === action.payload)
+            }
+        case DELETE_PROYECT:
+            return{
+                ...state,
+                stateListProyect: state.stateListProyect.filter(el => el !== action.payload),
+                activeProyect: null
             }
     
         default:

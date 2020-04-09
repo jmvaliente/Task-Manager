@@ -1,6 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+
+import proyectContext from '../../context/proyects/proyectContext'
 
 const FormTask = () =>{
+
+    const context = useContext(proyectContext)
+
+    const { activeProyect } = context
 
     const [state, setState] = useState({
         task:''
@@ -16,7 +22,7 @@ const FormTask = () =>{
         })
     }
 
-    
+    if(!activeProyect) return null
     
     return(
             <form>
