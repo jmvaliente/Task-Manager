@@ -26,7 +26,9 @@ const ListTasks = () => {
                         {activeTasks.length === null
                             ? (<li><p>Tasks no added</p></li>)
                             : activeTasks.map(el => (
-                                <Task task = {el}
+                                <Task
+                                    key = {el.id} 
+                                    task = {el}
                                 />
                                 ))
                         }

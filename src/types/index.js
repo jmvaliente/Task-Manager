@@ -6,3 +6,5 @@ export const ACTIVE_PROYECT = 'ACTIVE_PROYECT'
 export const DELETE_PROYECT = 'DELETE_PROYECT'
 
 export const LIST_TASK = 'LIST_TASK'
+export const ADD_TASK = 'ADD_TASK'
+export const DELETE_TASK = 'DELETE_TASK'
