@@ -15,7 +15,8 @@ const ProyectState = props => {
     const listProyect = [
         {id:1, name: 'Web Developer'},
         {id:2, name: 'UI developer'},
-        {id:3, name: 'SEO/SEM strategy'}
+        {id:3, name: 'SEO/SEM strategy'},
+        {id:4, name: 'Update Proyect'}
     ]
     const initialState = {
         stateListProyect: [],

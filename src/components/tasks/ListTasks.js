@@ -9,12 +9,7 @@ const ListTasks = () => {
 
     const {activeProyect, deleteProyectFn} = context
 
-    const state = [
-        {name: "Update System", complete: false},
-        {name: "Change Colors", complete: false},
-        {name: "Change UI", complete: true},
-        {name: "Update Images", complete: true}
-    ]
+    const state = []
 
     if (!activeProyect){
         return(
