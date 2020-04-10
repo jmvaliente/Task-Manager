@@ -2,14 +2,15 @@ import React, { Fragment, useContext } from 'react'
 import Task from './Task'
 
 import proyectContext from '../../context/proyects/proyectContext'
+import taskContext from '../../context/tasks/taskContext'
 
 const ListTasks = () => {
 
     const context = useContext(proyectContext)
+    const contextTask = useContext(taskContext)
 
     const {activeProyect, deleteProyectFn} = context
-
-    const state = []
+    const { activeTasks } = contextTask
 
     if (!activeProyect){
         return(
@@ -22,9 +23,9 @@ const ListTasks = () => {
             <h4>Proyect : {activeProyect[0].name}</h4>
                 <div className = "container">
                     <ul className = "list-group">
-                        {state.length === 0
+                        {activeTasks.length === null
                             ? (<li><p>Tasks no added</p></li>)
-                            : state.map(el => (
+                            : activeTasks.map(el => (
                                 <Task task = {el}
                                 />
                                 ))

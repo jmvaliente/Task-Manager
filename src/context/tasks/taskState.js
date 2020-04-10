@@ -19,7 +19,8 @@ const TaskState = props =>{
             {name: "Change Colors", complete: false, proyectId: 1},
             {name: "Change UI", complete: true, proyectId: 4},
             {name: "Update Images", complete: true, proyectId: 2}
-        ]
+        ],
+        activeTasks: null
     }
 
     const [state,dispatch] = useReducer(taskReducer, initalState)
@@ -35,6 +36,7 @@ const TaskState = props =>{
         <TaskContext.Provider
             value={{
                 tasklist: state.tasks,
+                activeTasks : state.activeTasks,
 
                 listTaskFn
             }}

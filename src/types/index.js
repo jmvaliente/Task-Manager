@@ -1,11 +1,8 @@
 export const NEW_PROYECT = 'NEW_PROYECT'
 export const LIST_PROYECT = 'LIST_PROYECT'
 export const ADD_PROYECT = 'ADD_PROYECT'
-
 export const VALIDATE_NEW_PROYECT = 'VALIDATE_NEW_PROYECT'
-
 export const ACTIVE_PROYECT = 'ACTIVE_PROYECT'
-
 export const DELETE_PROYECT = 'DELETE_PROYECT'
 
 export const LIST_TASK = 'LIST_TASK'

@@ -7,7 +7,7 @@ export default (state,action) => {
         case LIST_TASK:
             return{
                 ...state,
-                tasks: state.tasks.filter(el => el.proyectId === action.payload)
+                activeTasks: state.tasks.filter(el => el.proyectId === action.payload)
         }
         
     
