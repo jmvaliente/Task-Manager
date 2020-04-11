@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 import TaskContext from './taskContext'
 import taskReducer from './taskReducer'
 
-import {LIST_TASK, ADD_TASK, DELETE_TASK, STATE_TASK} from '../../types'
+import {LIST_TASK, ADD_TASK, DELETE_TASK, STATE_TASK, ACTIVE_TASK, EDIT_TASK} from '../../types'
 
 const TaskState = props =>{
     const initalState = {
@@ -20,7 +20,8 @@ const TaskState = props =>{
             {name: "Change UI", complete: true, proyectId: 4, id:11},
             {name: "Update Images", complete: true, proyectId: 2, id:12}
         ],
-        activeTasks: null
+        activeTasks: null,
+        taskEdit: null
     }
 
     const [state,dispatch] = useReducer(taskReducer, initalState)
@@ -53,16 +54,33 @@ const TaskState = props =>{
         })
     }
 
+    const activeTasksFn = (task) => {
+        dispatch({
+            type: ACTIVE_TASK,
+            payload: task
+        })
+    }
+
+    const editTaskFn = (task) => {
+        dispatch({
+            type: EDIT_TASK,
+            payload: task
+        })
+    }
+
     return(
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 activeTasks : state.activeTasks,
+                taskEdit: state.taskEdit,
 
                 listTaskFn,
                 addTaskFn,
                 deleteTaskFn,
-                stateTaskFn
+                stateTaskFn,
+                activeTasksFn,
+                editTaskFn
             }}
         >
             {props.children}

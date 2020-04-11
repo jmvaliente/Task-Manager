@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 
 import proyectContext from '../../context/proyects/proyectContext'
 import taskContext from '../../context/tasks/taskContext'
@@ -9,13 +9,19 @@ const FormTask = () =>{
     const contextTask = useContext(taskContext)
 
     const { activeProyect } = context
-    const { addTaskFn, listTaskFn } = contextTask
+    const { addTaskFn, listTaskFn, taskEdit, editTaskFn } = contextTask
 
     const [state, setState] = useState({
         name:'',
         complete: false,
         proyectId: null
     })
+
+    useEffect( ()=> {
+        if(taskEdit){
+            setState(taskEdit)
+        }
+    },[taskEdit])
 
     const {name} = state
 
@@ -28,16 +34,21 @@ const FormTask = () =>{
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        
-        state.proyectId = activeProyect[0].id
-        addTaskFn(state)
-        listTaskFn(activeProyect[0].id)
 
-        setState({
-            name: '',
-            proyectId: null
-        })
-
+            if(taskEdit===null){
+                state.proyectId = activeProyect[0].id
+                addTaskFn(state)
+                
+            }else{
+                editTaskFn(state)
+            }
+            
+            
+            listTaskFn(activeProyect[0].id)
+            setState({
+                name: '',
+                proyectId: null
+            })
     }
 
     if(!activeProyect) return null
@@ -60,7 +71,7 @@ const FormTask = () =>{
                     <input
                         type = "submit"
                         className = "btn btn-primary"
-                        value = "Add Task"
+                        value = {taskEdit ? "Edit Task" : "Add Task"}
 
                     />
                 </div>
