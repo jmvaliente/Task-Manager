@@ -1,5 +1,5 @@
 // types
-import {LIST_TASK, ADD_TASK, DELETE_TASK} from '../../types'
+import {LIST_TASK, ADD_TASK, DELETE_TASK, STATE_TASK} from '../../types'
 
 export default (state,action) => {
     switch (action.type) {
@@ -18,6 +18,11 @@ export default (state,action) => {
             return{
                 ...state,
                 tasks: state.tasks.filter( el => el.id !== action.payload)
+            }
+        case STATE_TASK:
+            return{
+                ...state,
+                tasks: state.tasks.map(el => el.id === action.payload.id ? action.payload : el)
             }
     
         default:
