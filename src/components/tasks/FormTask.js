@@ -14,7 +14,7 @@ const FormTask = () =>{
     const [state, setState] = useState({
         name:'',
         complete: false,
-        proyectId: null
+        proyectId: null,
     })
 
     useEffect( ()=> {
@@ -47,7 +47,8 @@ const FormTask = () =>{
             listTaskFn(activeProyect[0].id)
             setState({
                 name: '',
-                proyectId: null
+                proyectId: null,
+                id: null
             })
     }
 
