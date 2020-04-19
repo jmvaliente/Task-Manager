@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {Link} from 'react-router-dom'
+import alertContext from '../../context/alerts/alertContext'
 
 const AddUser = () =>{
+
+    const contextAlert = useContext(alertContext)
+    const {alert, alertShow} = contextAlert
 
     const [state,setState] = useState({
         email: '',
@@ -21,11 +25,28 @@ const AddUser = () =>{
 
     }
 
-    const createSubmit = (e) =>{
-        e.peventDefault()
+    const createSubmit = e =>{
+        e.preventDefault()
 
         //validate
-
+        if (email.trim()==='' ||
+            password.trim()==='' ||
+            checkPassword.trim()==='' ||
+            name.trim()==='' ||
+            surname.trim()===''){
+            
+                alertShow('Need complete all fields','alert')
+                return
+            }
+        if (password.length <=5){
+                alertShow('Password min 6 characteres', 'alert')
+                return     
+        }
+        if (password !== checkPassword){
+                alertShow('Password is not equal','alert')
+                return
+        }
+        
 
         //action
     }
@@ -37,7 +58,7 @@ const AddUser = () =>{
                 <h1>Create User</h1>
                 <form
                     onSubmit= {createSubmit}
-                >
+                    >
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input  type="text" 
@@ -46,7 +67,7 @@ const AddUser = () =>{
                                 name="name"
                                 value={name}
                                 onChange={createChange}
-                        />
+                                />
                     </div>
                     <div className="form-group">
                         <label htmlFor="surname">Surname</label>
@@ -56,7 +77,7 @@ const AddUser = () =>{
                                 name="surname"
                                 value={surname}
                                 onChange={createChange}
-                        />
+                                />
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email address</label>
@@ -66,7 +87,7 @@ const AddUser = () =>{
                                 name="email"
                                 value={email}
                                 onChange={createChange}
-                        />
+                                />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
@@ -76,7 +97,7 @@ const AddUser = () =>{
                                 name="password"
                                 value={password}
                                 onChange={createChange}
-                        />
+                                />
                     </div>
                     <div className="form-group">
                         <label htmlFor="checkPasword">Check Password</label>
@@ -86,11 +107,12 @@ const AddUser = () =>{
                                 name="checkPassword"
                                 value={checkPassword}
                                 onChange={createChange}
-                        />
+                                />
                     </div>
+                    {alert ?<p className={alert.category}>{alert.msg}</p> :null}
                     <button type="submit" 
                             className="btn btn-outline-primary"
-                    >Register</button>
+                            >Register</button>
                 </form>
                 <Link to = {'/'}>
                     <button className="btn btn-outline-warning mt-3"

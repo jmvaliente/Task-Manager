@@ -6,16 +6,19 @@ import {Route , Switch} from 'react-router-dom'
 
 import ProyectState from './context/proyects/proyectState'
 import TaskState from './context/tasks/taskState'
+import AlertState from './context/alerts/alertState'
 
 function App() {
   return (
     <ProyectState>
       <TaskState>
-        <Switch>
-          <Route exact path = '/' component={Login}/>
-          <Route exact path = '/create-user' component={AddUser}/>
-          <Route exact path = '/proyects' component={Proyects}/>
-        </Switch>
+        <AlertState>
+          <Switch>
+            <Route exact path = '/' component={Login}/>
+            <Route exact path = '/create-user' component={AddUser}/>
+            <Route exact path = '/proyects' component={Proyects}/>
+          </Switch>
+          </AlertState>
       </TaskState>
     </ProyectState>
   );
