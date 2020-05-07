@@ -14,3 +14,11 @@ export const EDIT_TASK = 'EDIT_TASK'
 
 export const ALERT_TRUE= 'ALERT_TRUE'
 export const ALERT_FALSE = 'ALERT_FALSE'
+
+export const REGISTER_TRUE = 'REGISTER_TRUE'
+export const REGISTER_FALSE = 'REGISTER_FALSE'
+export const USER_OK = 'USER_OK'
+export const LOGIN_TRUE = 'LOGIN_TRUE'
+export const LOGIN_FALSE = 'LOGIN_FALSE'
+export const LOGOUT = 'LOGOUT'
+
