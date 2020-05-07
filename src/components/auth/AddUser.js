@@ -1,11 +1,27 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import alertContext from '../../context/alerts/alertContext'
 
-const AddUser = () =>{
+import authContext from '../../context/auth/authContext'
+
+const AddUser = (props) =>{
 
     const contextAlert = useContext(alertContext)
     const {alert, alertShow} = contextAlert
+
+    const contextAuth = useContext(authContext)
+    const {registerUserFn, msg, auth} = contextAuth
+
+    useEffect(()=>{
+        if(auth){
+            props.history.push('/proyects')
+        }
+
+        if(msg){
+            alertShow(`${msg}`,'alert')
+        }
+
+    },[msg, auth])
 
     const [state,setState] = useState({
         email: '',
@@ -48,8 +64,12 @@ const AddUser = () =>{
         }
         
 
-        //action
+        
+        registerUserFn({
+            email, name, password
+        })
     }
+
 
 
     return(
