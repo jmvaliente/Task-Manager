@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Sidebar from '../layout/Sidebar'
 import ListProyects from './ListProyects'
 import Navbar from '../layout/Navbar'
 import FormTask from '../tasks/FormTask'
 import ListTask from '../tasks/ListTasks'
 
+import AuthContext from '../../context/auth/authContext'
+
 const Proyects = () =>{
+
+    const contextAuth = useContext(AuthContext)
+    const { getUserFn } = contextAuth
+
+    useEffect(()=>{
+        getUserFn()
+    },[])
+
     return(
         <div className="container">
             <div className="row justify-content-md-center">

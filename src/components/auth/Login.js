@@ -1,7 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
+import alertContext from '../../context/alerts/alertContext'
+import authContext from '../../context/auth/authContext'
 
-const Login = () =>{
+const Login = (props) =>{
+
+    const contextAlert = useContext(alertContext)
+    const {alert, alertShow} = contextAlert
+
+    const contextAuth = useContext(authContext)
+    const {loginSuccessFn, msg, auth} = contextAuth
 
     const [state,setState] = useState({
         email: '',
@@ -9,6 +17,17 @@ const Login = () =>{
     })
 
     const { email, password } = state
+
+    useEffect(()=>{
+        if(auth){
+            props.history.push('/proyects')
+        }
+
+        if(msg){
+            alertShow(`${msg}`,'alert')
+        }
+
+    },[msg, auth])
 
     const loginChange = (e) =>{
         setState({
@@ -19,12 +38,16 @@ const Login = () =>{
     }
 
     const loginSubmit = (e) =>{
-        e.peventDefault()
+        e.preventDefault()
 
         //validate
-
+        if(email.trim() === '' || password.trim() === ''){
+            alertShow('all field needs')
+        }
 
         //action
+
+        loginSuccessFn({email, password})
     }
 
 
@@ -32,6 +55,7 @@ const Login = () =>{
         <div className="row justify-content-center">
             <div className="col-md-5">
                 <h1>Login</h1>
+                {alert ?<p className={alert.category}>{alert.msg}</p> :null}
                 <form
                     onSubmit= {loginSubmit}
                 >

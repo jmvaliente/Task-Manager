@@ -3,6 +3,7 @@ import authContext from './authContext'
 import authReducer from './authReducer'
 
 import clientAxios from '../../config/axios'
+import tokenAuth from '../../config/tokenAuth'
 
 import {REGISTER_TRUE, REGISTER_FALSE, USER_OK,
     LOGIN_TRUE,LOGIN_FALSE, LOGOUT} from '../../types'
@@ -29,23 +30,75 @@ const AuthState = props => {
                 type: REGISTER_TRUE,
                 payload: resp.data
             })
+
+            getUserFn()
             
         } catch (error) {
             
             dispatch({
-                type: REGISTER_FALSE,
+                type:LOGIN_FALSE,
                 payload: error.response.data.msg
             })
 
             setTimeout(()=>{
                 dispatch({
-                    type: REGISTER_FALSE,
+                    type:LOGIN_FALSE,
                     payload: null
                 })
             },5000)
 
             
             
+        }
+    }
+
+    const getUserFn = async () =>{
+        const token = localStorage.getItem('token')
+
+        if(token){
+            tokenAuth(token)
+        }
+
+        try {
+            const resp = await clientAxios.get('api/auth')
+            dispatch({
+                type: USER_OK,
+                payload: resp.data.user
+            })
+
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type: LOGIN_FALSE
+            })
+        }
+    }
+
+    const loginSuccessFn = async data =>{
+        try {
+            const resp = await clientAxios.post('/api/auth', data)
+            console.log(resp.data.token)
+
+            dispatch({
+                type: LOGIN_TRUE,
+                payload: resp.data
+            })
+            
+            getUserFn()
+            
+        } catch (error) {
+        
+            dispatch({
+                type:LOGIN_FALSE,
+                payload: error.response.data.msg
+            })
+
+            setTimeout(()=>{
+                dispatch({
+                    type:LOGIN_FALSE,
+                    payload: null
+                })
+            },5000)
         }
     }
 
@@ -57,7 +110,9 @@ const AuthState = props => {
                 user: state.user,
                 msg: state.msg,
 
-                registerUserFn
+                registerUserFn,
+                loginSuccessFn,
+                getUserFn
             }}
         >{props.children}
 
