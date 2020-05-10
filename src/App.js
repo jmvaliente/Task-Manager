@@ -10,6 +10,8 @@ import AlertState from './context/alerts/alertState'
 import AuthState from './context/auth/authState'
 import tokenAuth from './config/tokenAuth'
 
+import RoutesAuth from './components/routes/RoutesAuth'
+
 
 const token = localStorage.getItem('token')
 
@@ -27,7 +29,7 @@ function App() {
             <Switch>
               <Route exact path = '/' component={Login}/>
               <Route exact path = '/create-user' component={AddUser}/>
-              <Route exact path = '/proyects' component={Proyects}/>
+              <RoutesAuth exact path = '/proyects' component={Proyects}/>
             </Switch>
           </AlertState>
         </AuthState>

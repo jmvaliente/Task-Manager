@@ -6,7 +6,7 @@ import AuthContext from '../../context/auth/authContext'
 const Navbar = () => {
 
     const contextAuth = useContext(AuthContext)
-    const { user, getUserFn } = contextAuth
+    const { user, getUserFn, logOutFn } = contextAuth
 
     useEffect(()=>{
         getUserFn()
@@ -22,11 +22,14 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
-    {user ? <p className="nav-link">Hi <span className="text-light font-weight-bold">{user.name}</span></p> : null}
-                            
+                            {user ? <p className="nav-link">Hi <span className="text-light font-weight-bold">{user.name}</span></p> : null}          
                         </li>
                     </ul>
-                    <p className="text-light">Logout</p>
+                    <button
+                        className="btn btn-danger"
+                        onClick = {() => logOutFn()}
+                    >Logout
+                    </button>
             </div>
         </nav>
 
